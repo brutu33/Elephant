@@ -1,7 +1,6 @@
 require_relative '../constants'
 
 # Class represent base logic for shapes
-
 class Shape
   include Constants
 
@@ -10,6 +9,7 @@ class Shape
   def draw_on_canvas(canvas)
     raise "#{self.class.name} cannot be drawn without canvas" if canvas.nil?
 
+    validate!
     @canvas = canvas
     draw
     @canvas

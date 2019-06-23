@@ -1,13 +1,11 @@
 require_relative 'shape'
 
 # Class represent logic for drawing bucket fill
-
 class BucketFill < Shape
   attr_reader :p_x, :p_y, :colour
 
   def initialize(args)
     @p_x, @p_y, @colour = args.map { |arg| arg =~ /\D+/im ? arg : arg.to_i }
-    validate!
   end
 
   private

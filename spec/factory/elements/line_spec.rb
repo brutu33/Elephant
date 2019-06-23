@@ -4,18 +4,17 @@ require_relative '../../../app/factory/elements/line'
 describe Line do
   let(:drawing_tool) { attributes_for(:drawing_tool) }
 
-  describe '#initialize' do
-    context 'incorect initialize data' do
+  describe '#draw_on_canvas with horizontal line' do
+
+    context 'with incorect initialize data' do
+      let(:line) { Line.new([1, 'o', 6]) }
       it 'should raise error' do
-        expect { Line.new([1, 'o', 6]) }.to raise_error(ArgumentError)
+        expect { line.draw_on_canvas(drawing_tool[:canvas]) }.to raise_error(ArgumentError)
       end
     end
-  end
-
-  describe '#draw_on_canvas with horizontal line' do
-    let(:line) { Line.new([1, 2, 6, 2]) }
 
     context 'when canvas exist' do
+      let(:line) { Line.new([1, 2, 6, 2]) }
       let(:canvas_with_line) { line.draw_on_canvas(drawing_tool[:canvas]) }
 
       it 'return canvas same rows size' do
@@ -44,9 +43,9 @@ describe Line do
   end
 
   describe '#draw_on_canvas with horizontal line from right to left' do
-    let(:line) { Line.new([6, 2, 1, 2]) }
 
     context 'when canvas exist' do
+      let(:line) { Line.new([6, 2, 1, 2]) }
       let(:canvas_with_line) { line.draw_on_canvas(drawing_tool[:canvas]) }
 
       it 'return canvas same rows size' do
@@ -85,10 +84,10 @@ describe Line do
       end
     end
 
-    let(:line) { Line.new([6, 3, 6, 4]) }
-    let(:canvas_with_line) { line.draw_on_canvas(drawing_tool[:canvas]) }
-
     context 'when canvas exist' do
+      let(:line) { Line.new([6, 3, 6, 4]) }
+      let(:canvas_with_line) { line.draw_on_canvas(drawing_tool[:canvas]) }
+
       it 'return canvas same rows size' do
         expect(canvas_with_line.size).to eq(drawing_tool[:height] + 1)
       end

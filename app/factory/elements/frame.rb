@@ -1,7 +1,6 @@
 require_relative 'shape'
 
 # Class represent logic for drawing frame
-
 class Frame < Shape
   attr_reader :width, :height
 
@@ -10,7 +9,6 @@ class Frame < Shape
 
   def initialize(args)
     @width, @height = args.map { |arg| arg =~ /\D+/im ? arg : arg.to_i + 1 }
-    validate!
   end
 
   def draw_on_canvas(_canvas)

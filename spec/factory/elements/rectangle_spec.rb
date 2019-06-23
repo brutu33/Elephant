@@ -5,14 +5,17 @@ describe Rectangle do
   let(:drawing_tool) { attributes_for(:drawing_tool) }
 
   describe '#initialize' do
-    context 'incorect initialize data' do
-      it 'should raise error' do
-        expect { Rectangle.new([1, 'o', 6]) }.to raise_error(ArgumentError)
-      end
-    end
+
   end
 
   describe '#draw_on_canvas' do
+    context 'with incorect initialize data' do
+      let(:rectangle) { Rectangle.new([1, 'o', 6]) }
+      it 'should raise error' do
+        expect { rectangle.draw_on_canvas(drawing_tool[:canvas]) }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'start or end point out of canvas bounds' do
       let(:rectangle) { Rectangle.new([10, 0, 14, 2]) }
       let(:canvas_with_rect) { rectangle.draw_on_canvas(drawing_tool[:canvas]) }

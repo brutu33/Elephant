@@ -4,15 +4,8 @@ require_relative '../../../app/factory/elements/bucket_fill'
 describe BucketFill do
   let(:drawing_tool) { attributes_for(:drawing_tool) }
 
-  describe '#initialize' do
-    context 'incorect initialize data' do
-      it 'should raise error' do
-        expect { BucketFill.new(['a', 9, 'o']) }.to raise_error(ArgumentError)
-      end
-    end
-  end
-
   describe '#draw_on_canvas' do
+
     context 'point out of canvas bounds' do
       let(:bucket_fill) { BucketFill.new([32, 9, 'o']) }
 
@@ -42,6 +35,14 @@ describe BucketFill do
     context 'when canvas not exist' do
       it 'should raise error' do
         expect { bucket_fill.draw_on_canvas(nil) }.to raise_error(RuntimeError)
+      end
+    end
+
+    context 'with incorect initialize data' do
+      let(:bucket_fill) { BucketFill.new(['a', 9, 'o']) }
+
+      it 'should raise error' do
+        expect { bucket_fill.draw_on_canvas(drawing_tool[:canvas]) }.to raise_error(ArgumentError)
       end
     end
   end

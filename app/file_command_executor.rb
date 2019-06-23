@@ -3,7 +3,6 @@ require_relative 'drawing_tool'
 
 # Class represent logic for reading drawing commands from file
 # execute them and write result to file
-
 class FileCommandExecutor
   attr_reader :read_file_name, :write_file_name, :drawing_tool
 
@@ -30,6 +29,6 @@ class FileCommandExecutor
   end
 
   def write_to_file
-    open(write_file_name, 'a') { |f| f.write(drawing_tool.to_s) } if drawing_tool.canvas
+    File.open(write_file_name, 'a') {|f| f.write(drawing_tool.to_s)} if drawing_tool.canvas
   end
 end

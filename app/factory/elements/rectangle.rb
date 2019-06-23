@@ -1,13 +1,11 @@
 require_relative 'shape'
 
 # Class represent logic for drawing rectangle
-
 class Rectangle < Shape
   attr_reader :x1, :y1, :x2, :y2
 
   def initialize(args)
     @x1, @y1, @x2, @y2 = args.map { |arg| arg =~ /\D+/im ? arg : arg.to_i }
-    validate!
   end
 
   private

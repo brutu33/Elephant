@@ -5,7 +5,6 @@ require_relative 'elements/frame'
 
 # Class represent factory logic for selecting
 # correct shape for incoming command
-
 class ShapeFactory
   def self.build(shape, args)
     case shape.upcase

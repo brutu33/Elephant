@@ -4,16 +4,22 @@ require_relative './../../factories/drawing_tool'
 
 describe Frame do
   describe '#initialize' do
-    context 'incorect initialize data' do
-      it 'should raise error' do
-        expect { Frame.new([20]) }.to raise_error(ArgumentError)
-      end
-    end
+
   end
 
-  let(:frame) { Frame.new([20, 4]) }
+
 
   describe '#draw_on_canvas' do
+
+
+    context 'with incorect initialize data' do
+      let(:frame) { Frame.new([20]) }
+      it 'should raise error' do
+        expect { frame.draw_on_canvas(nil) }.to raise_error(ArgumentError)
+      end
+    end
+
+    let(:frame) { Frame.new([20, 4]) }
     let(:canvas_with_frame) { frame.draw_on_canvas(nil) }
 
     it 'return canvas same rows size + 2' do

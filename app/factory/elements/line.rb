@@ -1,19 +1,16 @@
 require_relative 'shape'
 
 # Class represent logic for drawing line
-
 class Line < Shape
   attr_reader :x1, :y1, :x2, :y2
 
   def initialize(args)
     @x1, @y1, @x2, @y2 = args.map { |arg| arg =~ /\D+/im ? arg : arg.to_i }
-    validate!
   end
 
   def validate!
     args = [x1, y1, x2, y2].compact
     raise ArgumentError, "Incorrect args '#{args.join(' ')}' for #{self.class.name}" if args.size < 4 || args.find { |arg| arg =~ /\D+/im }
-
   end
 
   private
