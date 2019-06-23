@@ -5,8 +5,8 @@ FactoryBot.define do
     width { 21 }
     height { 5 }
     canvas do
-      (0..height).to_a.map do |y|
-        (0..width).to_a.map do |x|
+      [*0..height].map do |y|
+        [*0..width].map do |x|
           next '-' if [0, height].include?(y)
           next '|' if [0, width].include?(x)
 

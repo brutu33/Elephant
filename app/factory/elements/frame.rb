@@ -32,8 +32,8 @@ class Frame < Shape
   end
 
   def draw
-    (0..height).to_a.each do |y|
-      (0..width).to_a.each do |x|
+    [*0..height].each do |y|
+      [*0..width].each do |x|
         canvas[y][x] = colour(x, y)
       end
     end

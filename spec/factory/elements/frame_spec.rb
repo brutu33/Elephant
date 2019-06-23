@@ -29,7 +29,7 @@ describe Frame do
     end
 
     it 'should have left and right borders full of "|" colour' do
-      elements = (1..4).to_a.map do |y|
+      elements = [*1..4].map do |y|
         row = canvas_with_frame[y]
         [row.first] + [row.last]
       end.flatten

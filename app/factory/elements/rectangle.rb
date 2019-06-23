@@ -17,12 +17,14 @@ class Rectangle < Shape
     raise ArgumentError, "Incorrect args #{args.join(' ')}' for #{self.class.name}" if args.size < 4 || args.find { |arg| arg =~ /\D+/im }
   end
 
+  # ([*y1..y2] | [*y2..y1]) 'y' coordinates can go from top to bottom and bottom to top
   def draw
-    (y1..y2).to_a.each(&method(:draw_rows))
+    ([*y1..y2] | [*y2..y1]).each(&method(:draw_rows))
   end
 
+  # ([*x1..x2] | [*x2..x1]) 'x' coordinates can go from left to right and right to left
   def draw_rows(y)
-    (x1..x2).to_a.select { |x| point_in_canvas(x, y) }.each { |x| draw_border(x, y) }
+    ([*x1..x2] | [*x2..x1]).select { |x| point_in_canvas(x, y) }.each { |x| draw_border(x, y) }
   end
 
   def draw_border(x, y)

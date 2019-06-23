@@ -27,7 +27,38 @@ describe Line do
       end
 
       it 'should contain line colours' do
-        (1..6).to_a.each do |x|
+        [*1..6].each do |x|
+          expect(canvas_with_line[2][x]).to eql('X')
+        end
+      end
+
+      it 'should contain line when convert to str' do
+        expect(canvas_with_line[2].join('')).to eql('|XXXXXX              |')
+      end
+
+      it 'should have 6 elements' do
+        line = canvas_with_line.flatten.select { |elem| elem.eql?('X') }
+        expect(line.size).to eq(6)
+      end
+    end
+  end
+
+  describe '#draw_on_canvas with horizontal line from right to left' do
+    let(:line) { Line.new([6, 2, 1, 2]) }
+
+    context 'when canvas exist' do
+      let(:canvas_with_line) { line.draw_on_canvas(drawing_tool[:canvas]) }
+
+      it 'return canvas same rows size' do
+        expect(canvas_with_line.size).to eq(drawing_tool[:height] + 1)
+      end
+
+      it 'return canvas same cols size' do
+        expect(canvas_with_line.first.size).to eq(drawing_tool[:width] + 1)
+      end
+
+      it 'should contain line colours' do
+        [*1..6].each do |x|
           expect(canvas_with_line[2][x]).to eql('X')
         end
       end
@@ -71,7 +102,7 @@ describe Line do
       end
 
       it 'should contain line colours' do
-        (3..4).to_a.each do |y|
+        [*3..4].each do |y|
           expect(canvas_with_line[y][6]).to eql('X')
         end
       end

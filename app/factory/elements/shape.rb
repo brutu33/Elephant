@@ -28,6 +28,6 @@ class Shape
   # detect if drawing area include point
 
   def point_in_canvas(x, y)
-    (1..canvas.size - 2).to_a.include?(y) && (1..canvas.first.size - 2).to_a.include?(x)
+    [*1..canvas.size - 2].include?(y) && [*1..canvas.first.size - 2].include?(x)
   end
 end
